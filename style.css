@@ -45,7 +45,6 @@ header {
     border: 5px solid pink;
   }
 
-  .card-front:hover 
   
  
     .card-back {
@@ -66,9 +65,21 @@ header {
       }
       
       .card-back-4 {
-        background-color: #4caf50;
+        background-color: orange;
       }
-  
+      
+      .card-back-5 {
+        background-color: magenta;
+      }
+      .card-back-6 {
+        background-color: lightslategray;
+      }
+      .card-back-7 {
+        background-color: black;
+      }
+      .card-back-8 {
+        background-color: lightsteelblue;
+      }
   
   .card.flip .card-front {
     transform: rotateY(180deg);
@@ -77,6 +88,11 @@ header {
   .card.flip .card-back {
     transform: rotateY(0deg);
   }
+
+  .card-back .card-face {
+    backface-visibility: hidden;
+  }
+  
   
   .play-button {
     background-color: #4CAF50;
@@ -89,6 +105,7 @@ header {
   position: fixed;
   top: 50%;
   left: 50%;
+  margin-top: 190px;
   transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
