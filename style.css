@@ -25,11 +25,12 @@ header {
   
   .card {
     position: relative;
-    width: 100%;
-    height: 100%;
-    perspective: 1000px;
-    cursor: pointer;
-  
+  width: 100%;
+  height: 100%;
+  perspective: 1000px;
+  cursor: pointer;
+  transform-style: preserve-3d; 
+  transition: transform 0.5s ease;
   }
   
   .card-face {
@@ -37,63 +38,60 @@ header {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    transition: transform 0.5s ease;
   }
   
   .card-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  
     background-color: hotpink;
-    border: 5px solid pink;
+  border: 5px solid pink;
+  transform: rotateY(0deg); 
+  
   }
 
   
- 
     .card-back {
-        background-color: yellow;
-        transform: rotateY(180deg);
-      }
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      transform: rotateY(180deg);
+     }
       
-      .card-back-1 {
-        background-color: #f44336;
-      }
+     .card-back-1 {
+      background-color: #f44336;
+    }
+    
+    .card-back-2 {
+      background-color: #9c27b0;
+    }
+    
+    .card-back-3 {
+      background-color: #03a9f4;
+    }
+    
+    .card-back-4 {
+      background-color: orange;
+    }
+    
+    .card-back-5 {
+      background-color: magenta;
+    }
+    
+    .card-back-6 {
+      background-color: lightslategray;
+    }
+    
+    .card-back-7 {
+      background-color: black;
+    }
+    
+    .card-back-8 {
+      background-color: lightsteelblue;
+    }
       
-      .card-back-2 {
-        background-color: #9c27b0;
-      }
-      
-      .card-back-3 {
-        background-color: #03a9f4;
-      }
-      
-      .card-back-4 {
-        background-color: orange;
-      }
-      
-      .card-back-5 {
-        background-color: magenta;
-      }
-      .card-back-6 {
-        background-color: lightslategray;
-      }
-      .card-back-7 {
-        background-color: black;
-      }
-      .card-back-8 {
-        background-color: lightsteelblue;
-      }
-  
-  .card.flip .card-front {
-    transform: rotateY(180deg);
-  }
-  
-  .card.flip .card-back {
-    transform: rotateY(0deg);
-  }
-
-  .card-back .card-face {
-    backface-visibility: hidden;
-  }
-  
-  
   .play-button {
     background-color: #4CAF50;
   color: white;
