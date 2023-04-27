@@ -23,11 +23,12 @@ const shuffleButton = document.querySelector('.play-button');
 const cards = document.querySelectorAll('.card');
 const container = document.querySelector('.game-board');
 
+
 /*----- event listeners -----*/
 
 shuffleButton.addEventListener('click', shuffleCards);
 container.addEventListener('click', cardClick)
-
+//cards.addEventListener ('click', flipCard);
 
 /*----- functions -----*/
 
@@ -37,12 +38,16 @@ function render() {
   board.forEach((row, rowIdx) => {
     row.forEach((cell, colIdx) => {
       const divEl = document.createElement('div')
-      divEl.setAttribute('data-row', rowIdx)
+     divEl.setAttribute('data-row', rowIdx)
       divEl.setAttribute('data-col', colIdx)
       //2. Check if the current cell is in the flippedCard array
       // if it is, then give different class
       //otherwise give it class of card front 
-      divEl.classList.add('card-front')
+      if (flippedCards.includes(cell)) {
+        divEl.classList.add('card-back')
+      } else {
+        divEl.classList.add('card-front')
+      }
       cards[idx].append(divEl)
       // cards[idx].innerText = cell
       idx++
@@ -85,10 +90,15 @@ function cardClick(event) {
   const clickedCard = event.target;
   const row = clickedCard.dataset.row;
   const col = clickedCard.dataset.col;
-  console.log(board[row][col])
+  console.log(board[row][col]);
 //1. push the letter of the card that was clicked into flippedCards
 //check this by clicking a card and console logging flipped cards in console
+flippedCards.push(board[row][col]);
+//console.log(flippedCards);
+render()
+ 
 
+// }
 
 //   if (!clickedCard.classList.contains('card') || matchedCards.includes(clickedCard)) {
 //     return;
@@ -126,8 +136,21 @@ function cardClick(event) {
 //  }
 }
 
+// function flipCard() {
+//   cardClick.classList.toggle('flipCard');
+// }
+board.addEventListener( 'click', function() {
+  card.classList.toggle('is-flipped');
+});
+});
 
-function setTheBoard() {
+
+
+
+
+
+
+ function setTheBoard() {
   let idx = 0;
   board.forEach(row => {
     row.forEach((cell, index) => {
