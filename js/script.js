@@ -3,7 +3,7 @@
 // // Define an array of cards with their values (2 of each)
 // let cardValues = ["A", "B", "C", "D", "E", "F", "G", 
 //"H", "A", "B", "C", "D", "E", "F", "G", "H"];
-const values = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H'];
+const values = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'D1', 'D2', 'E1', 'E2', 'F1', 'F2', 'G1', 'G2', 'H1', 'H2'];
 /*----- state variables -----*/
 
 
@@ -28,7 +28,7 @@ const container = document.querySelector('.game-board');
 
 shuffleButton.addEventListener('click', shuffleCards);
 container.addEventListener('click', cardClick)
-//cards.addEventListener ('click', flipCard);
+// container.addEventListener ('click', flipCard);
 
 /*----- functions -----*/
 
@@ -44,10 +44,11 @@ function render() {
       // if it is, then give different class
       //otherwise give it class of card front 
       if (flippedCards.includes(cell)) {
-        divEl.classList.add('card-back')
+        divEl.classList.add('card-back', `${cell[0]}`)
       } else {
         divEl.classList.add('card-front')
       }
+      cards[idx].innerHTML = ''
       cards[idx].append(divEl)
       // cards[idx].innerText = cell
       idx++
@@ -73,79 +74,27 @@ function shuffleCards() {
       const randomIndex = Math.floor(Math.random() * (index + 1));
       [values[index], values[randomIndex]] = [values[randomIndex], values[index]];
   }
-
-
-  // const cardsArray = Array.from(cards);
-
-  // for (let index = cardsArray.length - 1; index > 0; index--) {
-  //   const randomIndex = Math.floor(Math.random() * (index + 1));
-  //   [cardsArray[index], cardsArray[randomIndex]] = [cardsArray[randomIndex], cardsArray[index]];
-  // }
-
-  // cardsArray.forEach(card => container.appendChild(card));
 }
-//
+
 
 function cardClick(event) {
   const clickedCard = event.target;
   const row = clickedCard.dataset.row;
   const col = clickedCard.dataset.col;
-  console.log(board[row][col]);
-//1. push the letter of the card that was clicked into flippedCards
-//check this by clicking a card and console logging flipped cards in console
-flippedCards.push(board[row][col]);
-//console.log(flippedCards);
-render()
- 
 
-// }
-
-//   if (!clickedCard.classList.contains('card') || matchedCards.includes(clickedCard)) {
-//     return;
-//   }
-
-//  flipCard(clickedCard);
-//  flippedCards.push(clickedCard);
-
-
-//  if (flippedCards.length === 2) {
-//    const [firstCard, secondCard] = flippedCards;
-//    const firstValue = firstCard.dataset.value;
-//    const secondValue = secondCard.dataset.value;
-
-//    if (firstValue === secondValue) {
-     
-//      matchedCards.push(firstCard, secondCard);
-//      flippedCards = [];
-
-    
-//      if (matchedCards.length === cards.length) {
-//        setTimeout(() => {
-//          alert('You won!');
-//          initGame();
-//        }, 1000);
-//      }
-//    } else {
-
-    //  setTimeout(() => {
-    //    flipCard(firstCard);
-    //    flipCard(secondCard);
-    //    flippedCards = [];
-    //  }, 2000);
-//    }
-//  }
+if (flippedCards.includes(board[row][col])) {
+  return;
+} else {
+  flippedCards.push(board[row][col]);
+ if (flippedCards.length === 2) {
+    checkMatch();
+  }
 }
 
-// function flipCard() {
-//   cardClick.classList.toggle('flipCard');
-// }
-board.addEventListener( 'click', function() {
-  card.classList.toggle('is-flipped');
-});
-});
-
-
-
+if (matchedCards.length === 16) {
+  checkWinner();
+}
+}
 
 
 
@@ -159,7 +108,6 @@ board.addEventListener( 'click', function() {
     })
   })
 }
-//render winner message
 
 //call init
 initGame();
