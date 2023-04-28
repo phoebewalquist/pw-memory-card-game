@@ -1,14 +1,8 @@
-/*----- constants -----*/
 
-// // Define an array of cards with their values (2 of each)
-// let cardValues = ["A", "B", "C", "D", "E", "F", "G", 
-//"H", "A", "B", "C", "D", "E", "F", "G", "H"];
 const values = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'D1', 'D2', 'E1', 'E2', 'F1', 'F2', 'G1', 'G2', 'H1', 'H2'];
-/*----- state variables -----*/
 
 
-// // Define a variable to keep track of flipped cards
-// let flippedCards = [];
+
 let flippedCards = [];
 let matchedCards = [];
 let board = [
@@ -17,7 +11,7 @@ let board = [
   [null, null, null, null],
   [null, null, null, null],
 ];
-/*----- cached elements  -----*/
+
 
 const shuffleButton = document.querySelector('button');
 const cards = document.querySelectorAll('.card');
@@ -25,15 +19,9 @@ const container = document.querySelector('.game-board');
 const h2El = document.querySelector('h2')
 
 
-/*----- event listeners -----*/
 shuffleButton.addEventListener('click', initGame);
 container.addEventListener('click', cardClick);
 
-// container.addEventListener ('click', flipCard);
-
-/*----- functions -----*/
-
-//initialize game/shuffle cards
 function render() {
   let idx = 0;
   board.forEach((row, rowIdx) => {
@@ -42,16 +30,14 @@ function render() {
       const divEl = document.createElement('div')
       divEl.setAttribute('data-row', rowIdx)
       divEl.setAttribute('data-col', colIdx)
-      //2. Check if the current cell is in the flippedCard array
-      // if it is, then give different class
-      //otherwise give it class of card front 
+    
       if (flippedCards.includes(cell) || matchedCards.includes(cell)) {
         divEl.classList.add('card-back', `${cell[0]}`)
       } else {
         divEl.classList.add('card-front')
       }
       cards[idx].append(divEl)
-      // cards[idx].innerText = cell
+     
       idx++
     })
   })
@@ -132,6 +118,4 @@ function checkWinner() {
 }
 
 
-
-//call init
 initGame();
