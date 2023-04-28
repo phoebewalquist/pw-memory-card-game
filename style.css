@@ -5,6 +5,13 @@ header {
   text-align: center;
 }
 
+h2 {
+  font-family: 'Bebas Neue', cursive;
+  text-align: center;
+  font-size: 28px;
+  color:#f44336
+}
+
 .title {
   margin: 0;
   font-size: 36px;
